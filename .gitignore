@@ -1,0 +1,18 @@
+# Fichiers Jupyter en cours (checkpoints)
+.ipynb_checkpoints/
+
+# Dossier des notebooks temporaires (si vous en avez un)
+*.log
+
+# Fichiers d’environnement
+.env
+venv/
+__pycache__/
+*.pyc
+
+# Données brutes, si volumineuses (ajustez selon vos besoins)
+Data/*.csv
+
+# Si vous avez généré des fichiers de sortie volumineux (ex. exports Excel, données temporaires, etc.)
+*.xlsx
+*.zip
