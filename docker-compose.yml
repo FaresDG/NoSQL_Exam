@@ -1,4 +1,4 @@
-version: '3.8'
+
 
 services:
   notebook:
@@ -8,17 +8,8 @@ services:
     volumes:
       - ./notebooks:/home/jovyan/work
       - ./data:/data
-    command: >
-      start-notebook.sh
-      --NotebookApp.token='' 
-      --NotebookApp.password=''
     environment:
       JUPYTER_ENABLE_LAB: "yes"
-      # You can leave JUPYTER_TOKEN or JUPYTER_PASSWORD blank, but the command flags take priority.
-      JUPYTER_TOKEN: ""
-      JUPYTER_PASSWORD: ""
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
 
   mongo:
     image: mongo:latest
@@ -31,7 +22,6 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       - mongo_data:/data/db
-      - ./Data:/data
 
   mongo-express:
     image: mongo-express:latest
@@ -46,9 +36,7 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
       ME_CONFIG_MONGODB_SERVER: mongo
       ME_CONFIG_MONGODB_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/
-      ME_CONFIG_BASICAUTH: "true"
-      ME_CONFIG_BASICAUTH_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      ME_CONFIG_BASICAUTH: "false"
 
 volumes:
   mongo_data:
